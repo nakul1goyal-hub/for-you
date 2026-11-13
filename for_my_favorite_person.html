@@ -1,0 +1,1522 @@
+<!-- ... existing code ... -->
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['Cormorant Garamond', 'serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            script: ['Caveat', 'cursive'],
+          },
+          colors: {
+            obsidian: '#090305',
+            velvet: '#14060B',
+            velvetCard: '#1B080F',
+            roseDeep: '#BE123C',
+            roseBright: '#F43F5E',
+            rubyGlow: '#E11D48',
+            goldChampagne: '#FBBF24',
+            creamRose: '#FFF1F2',
+            softBlush: '#FECDD3',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Dreamy Red & Black Midnight-Love Motion Graphics */
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px) rotate(var(--rot, 0deg)); }
+      50% { transform: translateY(-10px) rotate(calc(var(--rot, 0deg) + 1.5deg)); }
+    }
+    @keyframes bokehDrift {
+      0%, 100% { transform: translate(0px, 0px) scale(1); }
+      33% { transform: translate(30px, -25px) scale(1.08); }
+      66% { transform: translate(-25px, 20px) scale(0.95); }
+    }
+    @keyframes heartBeat {
+      0%, 100% { transform: scale(1); }
+      14% { transform: scale(1.18); }
+      28% { transform: scale(1); }
+      42% { transform: scale(1.14); }
+      70% { transform: scale(1); }
+    }
+    @keyframes shimmerSweep {
+      0% { transform: translateX(-130%) skewX(-20deg); }
+      100% { transform: translateX(230%) skewX(-20deg); }
+    }
+    @keyframes floatHeartUp {
+      0% { transform: translateY(0) scale(0.7) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-110px) scale(1.35) rotate(18deg); opacity: 0; }
+    }
+
+    .animate-bokeh { animation: bokehDrift 14s ease-in-out infinite; }
+    .animate-bokeh-delay { animation: bokehDrift 18s ease-in-out 4s infinite; }
+    .animate-heartbeat { animation: heartBeat 2.2s ease-in-out infinite; }
+
+    /* Shimmering Crimson Button Glow */
+    .btn-rose-shimmer {
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-rose-shimmer::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 45%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+      transform: translateX(-130%) skewX(-20deg);
+    }
+    .btn-rose-shimmer:hover::after {
+      animation: shimmerSweep 0.9s ease forwards;
+    }
+
+    /* Scroll Reveal Motion */
+    .reveal-up {
+      opacity: 0;
+      transform: translateY(28px) scale(0.98);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal-up.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Polaroid 3D Tilt & Crimson Ruby Elevation */
+    .polaroid-card {
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+      transform-style: preserve-3d;
+    }
+    .polaroid-card:hover {
+      box-shadow: 0 24px 52px -12px rgba(244, 63, 94, 0.38);
+      border-color: rgba(244, 63, 94, 0.65);
+      z-index: 20;
+    }
+
+    /* Wax-Sealed Envelope Animation */
+    .envelope-flap {
+      transform-origin: top center;
+      transition: transform 0.85s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .envelope-open .envelope-flap {
+      transform: rotateX(180deg);
+      z-index: 0;
+    }
+    .letter-sheet {
+      transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.7s ease;
+    }
+
+    /* Dark Velvet Parchment Texture */
+    .paper-texture {
+      background-color: #17060C;
+      background-image: radial-gradient(rgba(244, 63, 94, 0.08) 1px, transparent 0);
+      background-size: 20px 20px;
+    }
+
+    /* Burst Heart Particle */
+    .burst-heart {
+      position: fixed;
+      pointer-events: none;
+      z-index: 60;
+      animation: floatHeartUp 1.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Cursor Ribbon Trail Sparkle */
+    @keyframes cursorSparkleFade {
+      0% { transform: translate(-50%, -50%) scale(1) rotate(0deg); opacity: 0.95; }
+      100% { transform: translate(-50%, -95%) scale(0.15) rotate(45deg); opacity: 0; }
+    }
+    .cursor-trail-particle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 45;
+      animation: cursorSparkleFade 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Celebratory Card Pop-In */
+    @keyframes celebrationPop {
+      0% { transform: scale(0.75) translateY(18px); opacity: 0; }
+      65% { transform: scale(1.04) translateY(-4px); opacity: 1; }
+      100% { transform: scale(1) translateY(0); opacity: 1; }
+    }
+    .animate-celebration-pop {
+      animation: celebrationPop 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Magnetic Button Smooth Spring */
+    .magnetic-btn {
+      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease, font-size 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), padding 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .animate-bokeh, .animate-bokeh-delay, .animate-heartbeat {
+        animation: none !important;
+      }
+      .reveal-up {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-obsidian text-creamRose font-sans antialiased selection:bg-roseBright selection:text-white overflow-x-hidden relative">
+
+  <!-- Ambient Floating Crimson Rose Petals & Ruby Sparkles Canvas -->
+  <canvas id="petals-canvas" class="fixed inset-0 pointer-events-none z-10"></canvas>
+
+  <!-- Soft Ruby Cursor Glow Trail (Desktop & Touch) -->
+  <div id="cursor-glow" class="fixed w-96 h-96 rounded-full pointer-events-none z-0 -translate-x-1/2 -translate-y-1/2 transition-opacity duration-300 opacity-0"
+       style="background: radial-gradient(circle, rgba(244, 63, 94, 0.24) 0%, rgba(190, 18, 60, 0.12) 45%, transparent 72%);"></div>
+
+  <!-- Crimson-Gold Top Scroll Progress Bar -->
+  <div class="fixed top-0 left-0 right-0 h-1.5 z-50 bg-rose-950/80 pointer-events-none">
+    <div id="scroll-progress" class="h-full w-0 bg-gradient-to-r from-roseDeep via-roseBright to-goldChampagne shadow-[0_0_12px_rgba(244,63,94,0.85)] transition-[width] duration-75"></div>
+  </div>
+
+  <!-- Discreet Floating Personalize / Add Photos Bar -->
+  <div class="fixed bottom-4 right-4 z-40 flex items-center gap-2">
+    <button id="open-customizer-btn"
+      class="flex items-center gap-2 px-4 py-2.5 rounded-full bg-velvetCard/95 hover:bg-rose-950 backdrop-blur-md text-creamRose border border-rose-500/40 shadow-xl shadow-black/60 hover:shadow-rose-500/30 text-xs sm:text-sm font-semibold transition hover:-translate-y-0.5">
+      <span class="text-roseBright">✨</span>
+      <span>Personalize / Add Photos</span>
+    </button>
+  </div>
+
+  <!-- Minimalist Midnight-Crimson Top Bar -->
+  <header class="sticky top-0 z-30 bg-obsidian/85 backdrop-blur-xl border-b border-rose-500/20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-2 group">
+        <span class="text-roseBright text-xl animate-heartbeat drop-shadow-[0_0_8px_rgba(244,63,94,0.8)]">♥</span>
+        <span id="nav-brand-name" class="font-serif italic font-bold text-xl sm:text-2xl text-creamRose tracking-tight">
+          For My Favorite Person
+        </span>
+      </a>
+
+      <nav class="hidden sm:flex items-center gap-7 text-xs font-semibold uppercase tracking-widest text-softBlush/80">
+        <a href="#love-question" class="hover:text-roseBright transition">A Question ♥</a>
+        <a href="#sunday-menu" class="hover:text-roseBright transition">Sunday Date 🍕</a>
+        <a href="#memories" class="hover:text-roseBright transition">Our Memories</a>
+        <a href="#letter" class="hover:text-roseBright transition">Love Note</a>
+        <a href="#reasons" class="hover:text-roseBright transition">Why You</a>
+        <a href="#surprise" class="hover:text-roseBright transition">Surprise</a>
+      </nav>
+
+      <a href="#love-question"
+        class="btn-rose-shimmer inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-gradient-to-r from-roseDeep to-roseBright text-white shadow-md shadow-rose-600/30 text-xs font-bold transition hover:scale-105">
+        <span>Answer Me First ❤️</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- 1. HERO SECTION ("For Someone Special" — Midnight Crimson Edition) -->
+  <section class="relative min-h-[76vh] flex items-center justify-center py-14 sm:py-20 px-4 sm:px-6 overflow-hidden">
+    <!-- Deep Ruby & Velvet Bokeh Orbs (Cursor Parallax Enabled) -->
+    <div id="parallax-orb-1" class="animate-bokeh absolute -top-24 -left-20 w-80 h-80 sm:w-[32rem] sm:h-[32rem] rounded-full bg-rose-600/25 blur-3xl pointer-events-none transition-transform duration-300 ease-out"></div>
+    <div id="parallax-orb-2" class="animate-bokeh-delay absolute -bottom-24 -right-16 w-80 h-80 sm:w-[32rem] sm:h-[32rem] rounded-full bg-red-900/35 blur-3xl pointer-events-none transition-transform duration-300 ease-out"></div>
+    <div id="parallax-orb-3" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[28rem] h-[28rem] rounded-full bg-rose-500/15 blur-3xl pointer-events-none transition-transform duration-300 ease-out"></div>
+
+    <div class="relative z-20 max-w-4xl mx-auto text-center space-y-6">
+      <!-- Date / Keepsake Pill -->
+      <div class="reveal-up inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-velvetCard/90 backdrop-blur-md border border-rose-500/35 shadow-lg shadow-black/50 text-softBlush text-xs sm:text-sm font-semibold">
+        <span class="text-roseBright">❤️</span>
+        <span id="hero-badge-text">A Midnight-Red Keepsake Made Just For You</span>
+      </div>
+
+      <!-- Main Romantic Heading -->
+      <h1 class="reveal-up font-serif text-4xl sm:text-6xl lg:text-7xl font-bold text-creamRose leading-[1.12] tracking-tight" style="transition-delay: 90ms;">
+        <span id="hero-title-prefix">Every Moment Feels Like Magic With</span>
+        <span id="hero-her-name" class="block sm:inline italic bg-gradient-to-r from-roseBright via-red-400 to-goldChampagne bg-clip-text text-transparent drop-shadow-[0_2px_18px_rgba(244,63,94,0.4)]">
+          You ❤️
+        </span>
+      </h1>
+
+      <!-- Poetic Subtitle -->
+      <p id="hero-subtitle" class="reveal-up text-softBlush/85 text-base sm:text-xl max-w-2xl mx-auto leading-relaxed font-normal" style="transition-delay: 180ms;">
+        Tumhari ek smile poore din ki thakan mita deti hai. Here is a tiny keepsake of our sweetest memories, a special Sunday date treat, and everything I want to ask you today.
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="reveal-up flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-3" style="transition-delay: 260ms;">
+        <a href="#love-question"
+          class="magnetic-btn btn-rose-shimmer w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-roseBright via-roseDeep to-red-800 text-white font-bold text-sm sm:text-base shadow-xl shadow-rose-600/35 hover:-translate-y-0.5 transition">
+          Pehle Ek Question Ka Jawab Do ❤️ ↓
+        </a>
+        <a href="#sunday-menu"
+          class="magnetic-btn w-full sm:w-auto px-7 py-4 rounded-full bg-velvetCard/90 hover:bg-rose-950/90 text-creamRose border border-rose-500/40 font-semibold text-sm sm:text-base shadow-lg hover:-translate-y-0.5 transition">
+          Sunday Date Menu 🍕💋
+        </a>
+      </div>
+
+      <!-- Handwritten Signature Note -->
+      <p class="reveal-up font-script text-2xl sm:text-3xl text-roseBright pt-3" style="transition-delay: 340ms;">
+        "In a room full of art, I’d still stare at you."
+      </p>
+    </div>
+  </section>
+
+  <!-- 2. PLAYFUL INTERACTIVE "DO YOU LOVE ME?" GAME SECTION (Right at the Top!) -->
+  <section id="love-question" class="relative z-20 py-14 sm:py-20 px-4 sm:px-6 max-w-4xl mx-auto border-t border-rose-500/20">
+    <div class="reveal-up rounded-[2.25rem] bg-gradient-to-br from-[#210710] via-[#14050A] to-[#0B0205] border-2 border-rose-500/40 p-8 sm:p-14 text-center shadow-2xl shadow-rose-950/70 relative overflow-hidden">
+      <!-- Decorative Corner Hearts -->
+      <div class="absolute top-5 left-6 text-rose-500/30 text-3xl select-none pointer-events-none">♥</div>
+      <div class="absolute bottom-5 right-6 text-goldChampagne/25 text-3xl select-none pointer-events-none">✨</div>
+
+      <!-- Question State (Visible until she clicks Yes) -->
+      <div id="love-question-stage" class="space-y-6">
+        <span class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-rose-950/90 border border-rose-500/35 text-softBlush text-xs font-bold uppercase tracking-widest">
+          <span>🥺</span>
+          <span>Be Honest... No Lying Allowed!</span>
+        </span>
+
+        <h2 class="font-serif text-4xl sm:text-6xl font-bold text-creamRose tracking-tight">
+          Do You Love Me? <span class="inline-block animate-heartbeat text-roseBright drop-shadow-[0_0_12px_rgba(244,63,94,0.8)]">❤️</span>
+        </h2>
+
+        <p id="love-question-subtext" class="text-softBlush/80 text-sm sm:text-lg max-w-md mx-auto">
+          Soch samajh ke button dabana... dil ka mamla hai! 🙈✨
+        </p>
+
+        <!-- Dynamic Growing YES & Pleading Shrinking NO Buttons -->
+        <div id="love-buttons-arena" class="pt-4 min-h-[140px] flex flex-wrap items-center justify-center gap-4 sm:gap-6 relative">
+          <button id="love-yes-btn" type="button"
+            class="magnetic-btn btn-rose-shimmer rounded-full bg-gradient-to-r from-roseBright via-roseDeep to-red-700 text-white font-extrabold shadow-xl shadow-rose-600/45 hover:brightness-110 active:scale-95 cursor-pointer z-20"
+            style="font-size: 1.125rem; padding: 0.95rem 2.25rem;">
+            Yes ❤️
+          </button>
+
+          <button id="love-no-btn" type="button"
+            class="rounded-full bg-obsidian hover:bg-rose-950 text-softBlush border-2 border-rose-500/35 font-bold shadow-md transition-all duration-300 cursor-pointer z-10"
+            style="font-size: 1rem; padding: 0.85rem 1.85rem;">
+            No 🙈
+          </button>
+        </div>
+
+        <p id="no-click-counter-hint" class="hidden text-xs font-semibold text-roseBright italic"></p>
+      </div>
+
+      <!-- Celebration State (Revealed when she finally clicks YES!) -->
+      <div id="love-yes-celebration" class="hidden animate-celebration-pop space-y-5 py-4">
+        <div class="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-roseBright to-roseDeep text-white text-4xl flex items-center justify-center shadow-xl shadow-rose-600/50 animate-heartbeat">
+          🥰
+        </div>
+
+        <span class="inline-block px-4 py-1 rounded-full bg-rose-950 border border-goldChampagne/40 text-goldChampagne text-xs font-extrabold uppercase tracking-widest">
+          100% Confirmed • Best Answer Ever ✨
+        </span>
+
+        <h3 class="font-serif text-3xl sm:text-5xl font-bold text-roseBright leading-tight drop-shadow-[0_2px_14px_rgba(244,63,94,0.4)]">
+          Mujhe toh pehle se hi pata tha! ❤️✨
+        </h3>
+
+        <p class="font-script text-2xl sm:text-3xl text-creamRose max-w-lg mx-auto leading-snug">
+          "Chahe kitna bhi 'No' dabane ki koshish kar lo, end mein jeetna toh pyaar ko hi tha! I love you infinitely more 💕"
+        </p>
+
+        <div class="pt-3 flex flex-wrap items-center justify-center gap-3">
+          <button id="more-love-confetti-btn" type="button"
+            class="btn-rose-shimmer px-6 py-3 rounded-full bg-gradient-to-r from-roseBright to-roseDeep text-white text-xs sm:text-sm font-bold shadow-lg shadow-rose-600/35 hover:scale-105 transition">
+            Celebrate Again 🎉❤️
+          </button>
+          <a href="#sunday-menu"
+            class="px-5 py-3 rounded-full bg-rose-950 hover:bg-rose-900 text-goldChampagne border border-goldChampagne/35 text-xs sm:text-sm font-bold transition">
+            Ab Sunday Menu Choose Karo 🍕💋↓
+          </a>
+          <button id="replay-love-question-btn" type="button"
+            class="px-5 py-3 rounded-full bg-obsidian hover:bg-rose-950 text-softBlush/80 border border-rose-500/30 text-xs font-bold transition">
+            Play Again ↺
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. INTERACTIVE SUNDAY DATE MENU ("Sunday ko kya khana chahengi aap?" — Paid With Kisses 💋) -->
+  <section id="sunday-menu" class="relative z-20 py-14 sm:py-20 px-4 sm:px-6 max-w-6xl mx-auto">
+    <!-- Section Header -->
+    <div class="reveal-up text-center max-w-2xl mx-auto mb-12">
+      <span class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-rose-950/90 border border-goldChampagne/35 text-goldChampagne text-xs font-extrabold uppercase tracking-[0.2em]">
+        SUNDAY DATE SPECIAL • PAY WITH KISSES 💋✨
+      </span>
+      <h2 class="font-serif text-3xl sm:text-5xl font-bold text-creamRose mt-3 leading-tight">
+        Sunday ko kya khana chahengi aap?
+      </h2>
+      <p class="text-softBlush/75 text-sm sm:text-base mt-2.5">
+        Jo bhi pasand ho cart mein add kar lo — no cash, no card, sirf <span class="text-roseBright font-bold">sweet kisses 💋</span> se payment hogi!
+      </p>
+    </div>
+
+    <!-- 4 Menu Cards Grid -->
+    <div id="sunday-menu-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Rendered dynamically via JavaScript with 3D tilt & live cart state -->
+    </div>
+
+    <!-- Interactive Sunday Date Cart & Pay With Kisses Receipt -->
+    <div class="reveal-up mt-12 max-w-3xl mx-auto">
+      <div class="rounded-[2rem] bg-velvetCard/95 backdrop-blur-md border-2 border-rose-500/40 p-6 sm:p-8 shadow-2xl shadow-black/70 relative overflow-hidden">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-rose-500/20">
+          <div class="flex items-center gap-3">
+            <span class="w-11 h-11 rounded-2xl bg-rose-950 text-roseBright border border-rose-500/30 flex items-center justify-center text-xl">💋</span>
+            <div>
+              <h3 class="font-serif text-2xl font-bold text-creamRose">Your Sunday Date Cart</h3>
+              <p class="text-xs text-softBlush/65">Exclusive Currency: Unlimited Sweet Kisses Only 💋✨</p>
+            </div>
+          </div>
+          <span id="cart-badge-count" class="self-start sm:self-center px-3.5 py-1.5 rounded-full bg-rose-950 text-roseBright border border-rose-500/35 text-xs font-extrabold">
+            0 Items Selected
+          </span>
+        </div>
+
+        <!-- Cart Items List -->
+        <div id="sunday-cart-items" class="py-5 space-y-3">
+          <p class="text-center text-sm text-softBlush/60 py-4 italic">
+            Abhi cart khali hai... upar se apni pasand ki cheezein add karo! 😋💋
+          </p>
+        </div>
+
+        <!-- Cart Summary & Pay With Kisses Checkout Footer -->
+        <div class="pt-4 border-t border-rose-500/20 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <span class="text-[11px] font-bold uppercase tracking-wider text-goldChampagne block">Total Bill Payable</span>
+            <span id="kisses-bill-total" class="font-serif text-xl sm:text-2xl font-bold text-roseBright">
+              0 Kisses 💋 (Add treats first!)
+            </span>
+          </div>
+
+          <button id="confirm-sunday-order-btn" type="button"
+            class="magnetic-btn btn-rose-shimmer px-7 py-3.5 rounded-full bg-gradient-to-r from-roseBright via-roseDeep to-red-700 text-white font-extrabold text-sm shadow-lg shadow-rose-600/40 hover:scale-105 active:scale-95 transition disabled:opacity-40 disabled:pointer-events-none"
+            disabled>
+            Pay with Kisses &amp; Confirm 💋
+          </button>
+        </div>
+
+        <!-- Order Confirmation Receipt Box (Hidden until paid with kisses) -->
+        <div id="sunday-order-confirmed-box" class="hidden mt-6 pt-6 border-t-2 border-dashed border-rose-500/35 bg-obsidian/85 rounded-2xl p-5 sm:p-6 text-center space-y-3 animate-celebration-pop">
+          <div class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-rose-950 border border-roseBright/50 text-roseBright text-xs font-extrabold uppercase tracking-wider">
+            💋 Payment Received: Paid with Unlimited Kisses! 🎉
+          </div>
+          <h4 class="font-serif text-2xl sm:text-3xl font-bold text-creamRose">
+            Done! Sunday ko yeh sab ready milega 😘💋
+          </h4>
+          <p id="confirmed-order-summary" class="font-script text-2xl text-roseBright font-bold"></p>
+          <p id="confirmed-kisses-note" class="text-xs text-goldChampagne font-semibold"></p>
+
+          <div class="pt-2 flex flex-wrap items-center justify-center gap-3">
+            <button id="copy-order-btn" type="button"
+              class="btn-rose-shimmer px-6 py-3 rounded-full bg-gradient-to-r from-roseBright to-roseDeep text-white text-xs sm:text-sm font-bold shadow-lg transition">
+              Copy Order to Send Him 📋💋
+            </button>
+          </div>
+          <p id="copy-order-toast" class="hidden text-xs font-bold text-emerald-400">
+            Copied! Ab WhatsApp par paste karke bhej do 💬💋
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. INTERACTIVE POLAROID MEMORY GALLERY (Clean 6 Frames — No Cluttered Upload Buttons!) -->
+  <section id="memories" class="relative z-20 py-16 sm:py-24 px-4 sm:px-6 max-w-6xl mx-auto border-t border-rose-500/20">
+    <div class="reveal-up text-center max-w-2xl mx-auto mb-12">
+      <span class="text-xs font-bold uppercase tracking-[0.2em] text-roseBright">Captured Moments • 6 Favorite Frames</span>
+      <h2 class="font-serif text-3xl sm:text-5xl font-bold text-creamRose mt-1.5">
+        Our Little Memories
+      </h2>
+      <p class="text-softBlush/75 text-sm sm:text-base mt-2">
+        Hamari 6 sabse pyari yaadein — har ek photo ke peeche ek khoobsurat kahani hai ❤️
+      </p>
+    </div>
+
+    <!-- Polaroid Grid (Strictly 6 Cards) -->
+    <div id="polaroid-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
+      <!-- Cards injected & managed via JavaScript (capped at 6 memories) -->
+    </div>
+  </section>
+
+  <!-- 5. HEARTFELT LOVE LETTER (Interactive Wax-Sealed Envelope — Velvet & Crimson Edition) -->
+  <section id="letter" class="relative z-20 py-16 sm:py-24 px-4 sm:px-6 max-w-4xl mx-auto border-t border-rose-500/20">
+    <div class="reveal-up text-center mb-10">
+      <span class="text-xs font-bold uppercase tracking-[0.2em] text-roseBright">From My Heart To Yours</span>
+      <h2 class="font-serif text-3xl sm:text-5xl font-bold text-creamRose mt-1.5">A Little Note For You</h2>
+    </div>
+
+    <!-- Wax-Sealed Envelope Cover -->
+    <div id="envelope-cover" class="reveal-up cursor-pointer group max-w-2xl mx-auto rounded-[2rem] bg-gradient-to-br from-[#260712] via-[#17050B] to-[#0D0206] border-2 border-rose-500/40 p-10 sm:p-14 text-center shadow-2xl shadow-rose-950/70 hover:border-roseBright transition relative overflow-hidden">
+      <div class="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-roseBright to-roseDeep text-white text-3xl flex items-center justify-center shadow-xl shadow-rose-600/50 animate-heartbeat group-hover:scale-110 transition">
+        💌
+      </div>
+      <h3 class="font-serif text-2xl sm:text-4xl font-bold text-creamRose mt-5">
+        Tap the Wax Seal to Open Your Letter
+      </h3>
+      <p class="text-softBlush/75 text-sm mt-2">
+        Written only for your eyes ❤️
+      </p>
+      <span class="inline-block mt-5 px-4 py-1.5 rounded-full bg-rose-950 border border-rose-500/35 text-xs font-bold text-roseBright">
+        Click to Unfold ✨
+      </span>
+    </div>
+
+    <!-- Unfolded Parchment Letter (Hidden until seal tapped) -->
+    <div id="unfolded-letter" class="hidden max-w-2xl mx-auto paper-texture rounded-[2rem] border-2 border-rose-500/40 p-7 sm:p-11 shadow-2xl space-y-5 animate-celebration-pop">
+      <div class="flex items-center justify-between border-b border-rose-500/20 pb-3">
+        <span class="font-script text-2xl text-roseBright font-bold">My Dearest,</span>
+        <div class="flex items-center gap-2">
+          <button id="toggle-edit-letter-btn" type="button" class="px-3 py-1 rounded-full bg-rose-950 hover:bg-rose-900 text-softBlush border border-rose-500/30 text-xs font-bold transition">
+            ✏️ Edit Note
+          </button>
+          <button id="close-letter-btn" type="button" class="px-3 py-1 rounded-full bg-obsidian hover:bg-rose-950 text-softBlush/80 border border-rose-500/30 text-xs font-bold transition">
+            Seal Back ✕
+          </button>
+        </div>
+      </div>
+
+      <p id="letter-display-body" class="font-serif text-lg sm:text-xl text-creamRose/95 leading-relaxed whitespace-pre-line">
+        Kabhi kabhi words kam pad jaate hain yeh batane ke liye ki tum mere liye kitni special ho. Tumhari hasi, tumhari baatein, aur tumhara saath meri life ka sabse khoobsurat hissa hai.
+
+        No matter how busy or stressful life gets, just one thought of you makes everything feel lighter and brighter. Thank you for being my peace, my favorite notification, and my happiest place. ❤️
+      </p>
+
+      <!-- Inline Letter Editor -->
+      <div id="letter-editor-box" class="hidden space-y-3">
+        <textarea id="letter-textarea" rows="5" class="w-full p-4 rounded-2xl bg-obsidian border border-rose-500/40 text-creamRose text-sm focus:border-roseBright outline-none"></textarea>
+        <button id="save-letter-btn" type="button" class="px-5 py-2 rounded-full bg-roseBright text-white text-xs font-bold shadow">
+          Save Love Note ♥
+        </button>
+      </div>
+
+      <div class="pt-3 border-t border-rose-500/20 flex items-center justify-between">
+        <span class="text-xs text-softBlush/60">Forever &amp; Always</span>
+        <span id="letter-signature" class="font-script text-2xl sm:text-3xl text-roseBright font-bold">Yours, Always ♥</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. REASONS WHY YOU MAKE ME SMILE (Interactive Tap-to-Unlock Cards) -->
+  <section id="reasons" class="relative z-20 py-14 sm:py-20 px-4 sm:px-6 max-w-6xl mx-auto">
+    <div class="reveal-up text-center max-w-2xl mx-auto mb-12">
+      <span class="text-xs font-bold uppercase tracking-[0.2em] text-roseBright">Little Things I Adore</span>
+      <h2 class="font-serif text-3xl sm:text-5xl font-bold text-creamRose mt-1.5">
+        Reasons You Make Me Smile
+      </h2>
+      <p class="text-softBlush/75 text-sm sm:text-base mt-2">
+        Tap each card to unlock a little secret about why you’re my favorite person ✨
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="reason-card reveal-up group rounded-3xl bg-velvetCard/90 border border-rose-500/30 p-6 shadow-xl cursor-pointer transition hover:-translate-y-1 flex flex-col justify-between">
+        <div class="flex items-center justify-between">
+          <span class="w-11 h-11 rounded-2xl bg-rose-950 text-roseBright border border-rose-500/30 flex items-center justify-center text-xl group-hover:scale-110 transition">😊</span>
+          <span class="text-[11px] font-bold uppercase tracking-wider text-softBlush bg-rose-950/90 border border-rose-500/25 px-2.5 py-1 rounded-full">01 • Tap Me</span>
+        </div>
+        <div class="my-4">
+          <h3 class="font-serif text-2xl font-bold text-creamRose">Your Magic Smile</h3>
+          <p class="reason-hidden-text hidden text-sm text-softBlush/90 mt-2 leading-relaxed">
+            Ek baar tum muskura do toh mera poora mood instantly set ho jaata hai—it’s genuinely my favorite sight in the world.
+          </p>
+          <p class="reason-prompt text-xs text-roseBright font-semibold mt-2">Tap to unlock note ♥</p>
+        </div>
+        <div class="text-xs text-goldChampagne font-semibold">✨ Pure sunshine</div>
+      </div>
+
+      <div class="reason-card reveal-up group rounded-3xl bg-velvetCard/90 border border-rose-500/30 p-6 shadow-xl cursor-pointer transition hover:-translate-y-1 flex flex-col justify-between">
+        <div class="flex items-center justify-between">
+          <span class="w-11 h-11 rounded-2xl bg-rose-950 text-roseBright border border-rose-500/30 flex items-center justify-center text-xl group-hover:scale-110 transition">💬</span>
+          <span class="text-[11px] font-bold uppercase tracking-wider text-softBlush bg-rose-950/90 border border-rose-500/25 px-2.5 py-1 rounded-full">02 • Tap Me</span>
+        </div>
+        <div class="my-4">
+          <h3 class="font-serif text-2xl font-bold text-creamRose">Our Endless Talks</h3>
+          <p class="reason-hidden-text hidden text-sm text-softBlush/90 mt-2 leading-relaxed">
+            Chahe random baatein hon ya deep conversations, tumhare saath waqt kab nikal jaata hai pata hi nahi chalta.
+          </p>
+          <p class="reason-prompt text-xs text-roseBright font-semibold mt-2">Tap to unlock note ♥</p>
+        </div>
+        <div class="text-xs text-goldChampagne font-semibold">✨ Never boring</div>
+      </div>
+
+      <div class="reason-card reveal-up group rounded-3xl bg-velvetCard/90 border border-rose-500/30 p-6 shadow-xl cursor-pointer transition hover:-translate-y-1 flex flex-col justify-between">
+        <div class="flex items-center justify-between">
+          <span class="w-11 h-11 rounded-2xl bg-rose-950 text-roseBright border border-rose-500/30 flex items-center justify-center text-xl group-hover:scale-110 transition">💖</span>
+          <span class="text-[11px] font-bold uppercase tracking-wider text-softBlush bg-rose-950/90 border border-rose-500/25 px-2.5 py-1 rounded-full">03 • Tap Me</span>
+        </div>
+        <div class="my-4">
+          <h3 class="font-serif text-2xl font-bold text-creamRose">Your Caring Heart</h3>
+          <p class="reason-hidden-text hidden text-sm text-softBlush/90 mt-2 leading-relaxed">
+            Tumhari choti-choti care aur pyaar bhare gestures mujhe har din special feel karate hain.
+          </p>
+          <p class="reason-prompt text-xs text-roseBright font-semibold mt-2">Tap to unlock note ♥</p>
+        </div>
+        <div class="text-xs text-goldChampagne font-semibold">✨ One in a billion</div>
+      </div>
+
+      <div class="reason-card reveal-up group rounded-3xl bg-velvetCard/90 border border-rose-500/30 p-6 shadow-xl cursor-pointer transition hover:-translate-y-1 flex flex-col justify-between">
+        <div class="flex items-center justify-between">
+          <span class="w-11 h-11 rounded-2xl bg-rose-950 text-roseBright border border-rose-500/30 flex items-center justify-center text-xl group-hover:scale-110 transition">🏡</span>
+          <span class="text-[11px] font-bold uppercase tracking-wider text-softBlush bg-rose-950/90 border border-rose-500/25 px-2.5 py-1 rounded-full">04 • Tap Me</span>
+        </div>
+        <div class="my-4">
+          <h3 class="font-serif text-2xl font-bold text-creamRose">My Safe Place</h3>
+          <p class="reason-hidden-text hidden text-sm text-softBlush/90 mt-2 leading-relaxed">
+            No matter how crazy the day gets, talking to you feels like coming home. You’re my peace and my happiness.
+          </p>
+          <p class="reason-prompt text-xs text-roseBright font-semibold mt-2">Tap to unlock note ♥</p>
+        </div>
+        <div class="text-xs text-goldChampagne font-semibold">✨ Today, tomorrow, always</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. GRAND FINALE ("Tap For A Little Surprise" + Virtual Hug Counter) -->
+
+        <!-- Cart Summary & Confirm Order Footer -->
+        <div class="pt-4 border-t border-rose-500/20 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <span class="text-[11px] font-bold uppercase tracking-wider text-softBlush/55 block">Total Bill</span>
+            <span class="font-serif text-xl sm:text-2xl font-bold text-roseBright">₹0 — Paid with Unlimited Love ❤️</span>
+          </div>
+
+          <button id="confirm-sunday-order-btn" type="button"
+            class="magnetic-btn btn-rose-shimmer px-7 py-3.5 rounded-full bg-gradient-to-r from-roseBright to-roseDeep text-white font-bold text-sm shadow-lg shadow-rose-600/35 hover:scale-105 active:scale-95 transition disabled:opacity-40 disabled:pointer-events-none"
+            disabled>
+            Confirm Sunday Order 💌
+          </button>
+        </div>
+
+        <!-- Order Confirmation Receipt Box (Hidden until confirmed) -->
+        <div id="sunday-order-confirmed-box" class="hidden mt-6 pt-6 border-t-2 border-dashed border-rose-500/35 bg-obsidian/80 rounded-2xl p-5 sm:p-6 text-center space-y-3 animate-celebration-pop">
+          <div class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-emerald-950 border border-emerald-500/40 text-emerald-300 text-xs font-extrabold uppercase tracking-wider">
+            ✅ Order Confirmed for Sunday Date! 🎉
+          </div>
+          <h4 class="font-serif text-2xl sm:text-3xl font-bold text-creamRose">
+            Done! Sunday ko yeh sab ready milega 😘❤️
+          </h4>
+          <p id="confirmed-order-summary" class="font-script text-2xl text-roseBright font-bold"></p>
+
+          <div class="pt-2 flex flex-wrap items-center justify-center gap-3">
+            <button id="copy-order-btn" type="button"
+              class="btn-rose-shimmer px-6 py-3 rounded-full bg-gradient-to-r from-roseBright to-roseDeep text-white text-xs sm:text-sm font-bold shadow-lg transition">
+              Copy Order to Send Him 📋
+            </button>
+          </div>
+          <p id="copy-order-toast" class="hidden text-xs font-bold text-emerald-400">
+            Copied! Ab WhatsApp par paste karke bhej do 💬❤️
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. GRAND FINALE ("Tap For A Little Surprise" + Virtual Hug Counter) -->
+  <section id="surprise" class="relative z-20 py-20 sm:py-28 px-4 sm:px-6">
+    <div class="reveal-up max-w-3xl mx-auto rounded-[2rem] bg-gradient-to-br from-[#2B0613] via-[#19040B] to-[#0A0205] border-2 border-rose-500/40 text-white p-8 sm:p-14 text-center shadow-2xl shadow-rose-950/80 relative overflow-hidden">
+      <!-- Ambient Shimmer Glow -->
+      <div class="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-rose-500/20 blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-24 -left-24 w-72 h-72 rounded-full bg-red-600/20 blur-3xl pointer-events-none"></div>
+
+      <span class="inline-block px-3.5 py-1 rounded-full bg-rose-950 border border-rose-500/35 text-goldChampagne text-xs font-bold uppercase tracking-widest mb-4">
+        One Last Thing...
+      </span>
+
+      <h2 class="font-serif text-3xl sm:text-5xl font-bold text-creamRose leading-tight">
+        Ready For A Little Surprise?
+      </h2>
+      <p class="text-softBlush/85 text-sm sm:text-base max-w-lg mx-auto mt-3">
+        Tap the glowing crimson heart button below whenever you miss me or just want an instant smile!
+      </p>
+
+      <!-- Big Interactive Surprise Button -->
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <button id="grand-surprise-btn"
+          class="magnetic-btn btn-rose-shimmer px-8 py-4 rounded-full bg-gradient-to-r from-roseBright via-roseDeep to-red-700 text-white font-extrabold text-base sm:text-lg shadow-xl shadow-rose-600/45 hover:scale-105 active:scale-95 transition">
+          ❤️ Tap For A Heart Shower ❤️
+        </button>
+
+        <button id="virtual-hug-btn"
+          class="magnetic-btn px-6 py-4 rounded-full bg-obsidian/90 hover:bg-rose-950 backdrop-blur-md border border-rose-500/40 text-creamRose font-bold text-sm sm:text-base transition active:scale-95">
+          🤗 Send a Virtual Hug (<span id="hug-count">1</span>)
+        </button>
+      </div>
+
+      <!-- Hidden Finale Wish Reveal -->
+      <div id="finale-wish-box" class="hidden mt-8 pt-7 border-t border-rose-500/25 space-y-2 transition-all">
+        <p class="font-script text-3xl sm:text-4xl text-goldChampagne">
+          "You are my favorite chapter, today and always."
+        </p>
+        <p id="hug-response-text" class="text-xs sm:text-sm text-softBlush">
+          Sending you the warmest, tightest hug right now! ❤️
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Minimalist Footer -->
+  <footer class="relative z-20 py-8 text-center text-xs text-softBlush/55 border-t border-rose-500/20">
+    <p>Crafted with endless love ♥ Just to make you smile</p>
+  </footer>
+
+  <!-- FULLSCREEN PHOTO LIGHTBOX MODAL -->
+  <div id="lightbox-modal" class="hidden fixed inset-0 z-50 bg-black/92 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="relative max-w-2xl w-full bg-velvetCard border border-rose-500/40 rounded-3xl p-4 sm:p-6 shadow-2xl text-center">
+      <button id="close-lightbox" aria-label="Close photo"
+        class="absolute -top-3 -right-3 w-10 h-10 rounded-full bg-roseBright text-white font-bold shadow-lg hover:scale-110 transition">
+        ✕
+      </button>
+
+      <div class="aspect-[4/3] sm:aspect-[16/11] w-full rounded-2xl overflow-hidden bg-obsidian">
+        <img id="lightbox-img" src="" alt="Memory" class="w-full h-full object-contain" />
+      </div>
+
+      <div class="mt-4 flex items-center justify-between gap-3">
+        <button id="prev-photo-btn" class="px-4 py-2 rounded-full bg-rose-950 hover:bg-rose-900 text-softBlush border border-rose-500/30 text-xs font-bold transition">
+          ← Prev
+        </button>
+        <div>
+          <p id="lightbox-caption" class="font-script text-2xl sm:text-3xl text-creamRose font-bold"></p>
+          <span id="lightbox-date" class="text-xs font-semibold text-goldChampagne"></span>
+        </div>
+        <button id="next-photo-btn" class="px-4 py-2 rounded-full bg-rose-950 hover:bg-rose-900 text-softBlush border border-rose-500/30 text-xs font-bold transition">
+          Next →
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PERSONALIZE / EDIT POLAROID & HERO MODAL -->
+  <div id="customizer-modal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-velvetCard text-creamRose rounded-3xl max-w-lg w-full p-6 sm:p-7 shadow-2xl border border-rose-500/40 max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between pb-3 border-b border-rose-500/20">
+        <div>
+          <h3 class="font-serif text-2xl font-bold text-creamRose">Personalize For Her ✨</h3>
+          <p class="text-xs text-softBlush/65">Customize her name, hero message, or add new photos anytime</p>
+        </div>
+        <button id="close-customizer-btn" class="w-8 h-8 rounded-full bg-rose-950 text-roseBright font-bold">✕</button>
+      </div>
+
+      <form id="customizer-form" class="space-y-4 mt-4">
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-softBlush/80 mb-1">Her Name / Nickname</label>
+          <input type="text" id="input-her-name" placeholder="e.g., Ananya ❤️ or My Kuchupuchu ❤️"
+            class="w-full px-4 py-2.5 rounded-xl bg-obsidian border border-rose-500/35 text-creamRose text-sm focus:border-roseBright outline-none" />
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-softBlush/80 mb-1">Hero Subtitle Message</label>
+          <textarea id="input-hero-subtitle" rows="2"
+            class="w-full px-4 py-2.5 rounded-xl bg-obsidian border border-rose-500/35 text-creamRose text-sm focus:border-roseBright outline-none"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-softBlush/80 mb-1">Your Name (Letter Signature)</label>
+          <input type="text" id="input-your-name" placeholder="e.g., Yours, Rahul ♥"
+            class="w-full px-4 py-2.5 rounded-xl bg-obsidian border border-rose-500/35 text-creamRose text-sm focus:border-roseBright outline-none" />
+        </div>
+
+        <div class="pt-2 border-t border-rose-500/20">
+          <label class="block text-xs font-bold uppercase tracking-wider text-roseBright mb-1.5">Add More Photos to Gallery</label>
+          <input type="file" id="modal-photo-upload" accept="image/*" multiple
+            class="w-full text-xs text-softBlush/75 file:mr-3 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-bold file:bg-roseBright file:text-white hover:file:bg-roseDeep bg-obsidian border border-rose-500/35 rounded-xl p-1.5 cursor-pointer" />
+        </div>
+
+        <button type="submit" class="btn-rose-shimmer w-full py-3.5 rounded-full bg-gradient-to-r from-roseBright to-roseDeep text-white font-bold text-sm shadow-lg">
+          Save &amp; Apply Changes ♥
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- EDIT SINGLE POLAROID CAPTION / PHOTO MODAL -->
+  <div id="edit-card-modal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-velvetCard text-creamRose rounded-3xl max-w-md w-full p-6 shadow-2xl border border-rose-500/40">
+      <div class="flex items-center justify-between pb-3 border-b border-rose-500/20">
+        <h3 class="font-serif text-xl font-bold text-creamRose">Edit This Memory</h3>
+        <button id="close-edit-card-modal" class="w-8 h-8 rounded-full bg-rose-950 text-roseBright font-bold">✕</button>
+      </div>
+      <form id="edit-card-form" class="space-y-4 mt-4">
+        <input type="hidden" id="edit-card-index" />
+        <div>
+          <label class="block text-xs font-bold uppercase text-softBlush/80 mb-1">Replace Photo (Optional)</label>
+          <input type="file" id="edit-card-file" accept="image/*"
+            class="w-full text-xs text-softBlush/75 file:mr-3 file:py-2 file:px-3.5 file:rounded-full file:border-0 file:text-xs file:font-bold file:bg-roseBright file:text-white bg-obsidian border border-rose-500/35 rounded-xl p-1.5" />
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase text-softBlush/80 mb-1">Sweet Caption</label>
+          <input type="text" id="edit-card-caption" required
+            class="w-full px-3.5 py-2.5 rounded-xl bg-obsidian border border-rose-500/35 text-creamRose text-sm focus:border-roseBright outline-none" />
+        </div>
+        <div>
+          <label class="block text-xs font-bold uppercase text-softBlush/80 mb-1">Date / Tag</label>
+          <input type="text" id="edit-card-date" required
+            class="w-full px-3.5 py-2.5 rounded-xl bg-obsidian border border-rose-500/35 text-creamRose text-sm focus:border-roseBright outline-none" />
+        </div>
+        <button type="submit" class="w-full py-3 rounded-full bg-roseBright text-white font-bold text-sm shadow">
+          Update Memory ♥
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- INTERACTIVE MOTION GRAPHICS & GALLERY ENGINE -->
+  <script>
+    // 1. Exactly 6 Romantic Polaroid Memories (Easily replaced with her real photos!)
+    const MAX_MEMORIES = 6;
+    const memories = [
+      {
+        src: 'https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=800&q=80',
+        caption: 'The smile that started everything ❤️',
+        date: 'Memory 01',
+        tilt: '-2deg'
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=800&q=80',
+        caption: 'Golden hour & endless conversations ✨',
+        date: 'Memory 02',
+        tilt: '1.8deg'
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=800&q=80',
+        caption: 'My favorite place is right next to you 🌹',
+        date: 'Memory 03',
+        tilt: '-1.4deg'
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?auto=format&fit=crop&w=800&q=80',
+        caption: 'Every silly laugh with you is priceless 💕',
+        date: 'Memory 04',
+        tilt: '1.6deg'
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1494774157365-9e04c6720e47?auto=format&fit=crop&w=800&q=80',
+        caption: 'You make ordinary days feel like a dream ✨',
+        date: 'Memory 05',
+        tilt: '-1.8deg'
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1518568814500-bf0f8d125f46?auto=format&fit=crop&w=800&q=80',
+        caption: 'Forever my favorite chapter ❤️',
+        date: 'Memory 06',
+        tilt: '1.4deg'
+      }
+    ];
+
+    const polaroidGrid = document.getElementById('polaroid-grid');
+    let activePhotoIndex = 0;
+
+    // Heart Burst Particle Helper
+    function spawnHeartBurst(x, y, count = 8, customIcons = null) {
+      const icons = customIcons || ['❤️', '💖', '✨', '🌹', '💕'];
+      for (let i = 0; i < count; i++) {
+        const el = document.createElement('span');
+        el.className = 'burst-heart select-none text-lg sm:text-xl';
+        el.textContent = icons[Math.floor(Math.random() * icons.length)];
+        const offsetX = (Math.random() - 0.5) * 90;
+        const offsetY = (Math.random() - 0.5) * 40;
+        el.style.left = `${x + offsetX}px`;
+        el.style.top = `${y + offsetY}px`;
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 1250);
+      }
+    }
+
+    function renderPolaroids() {
+      polaroidGrid.innerHTML = '';
+      memories.forEach((item, index) => {
+        const card = document.createElement('div');
+        card.className = 'polaroid-card reveal-up visible group relative bg-velvetCard p-3.5 pb-6 rounded-2xl border border-rose-500/35 shadow-xl shadow-black/60 cursor-pointer';
+        card.style.transform = `rotate(${item.tilt})`;
+
+        card.innerHTML = `
+          <div class="relative aspect-[4/4] w-full rounded-xl overflow-hidden bg-obsidian">
+            <img src="${item.src}" alt="${item.caption}"
+              onerror="this.onerror=null;this.src='https://placehold.co/600x600/1B080F/F43F5E?text=Our+Sweet+Memory';"
+              class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+            <!-- Subtle Edit Icon only on Desktop Hover -->
+            <button type="button" data-edit-idx="${index}" title="Replace Photo or Edit Caption"
+              class="edit-polaroid-btn absolute top-2.5 right-2.5 px-2.5 py-1 rounded-full bg-obsidian/85 hover:bg-roseBright text-creamRose hover:text-white border border-rose-500/40 text-[11px] font-bold shadow opacity-0 group-hover:opacity-100 transition">
+              ✏️
+            </button>
+          </div>
+          <div class="mt-4 px-1 text-center">
+            <p class="font-script text-2xl sm:text-[1.65rem] text-creamRose font-bold leading-snug">${item.caption}</p>
+            <span class="inline-block mt-1 text-[11px] font-bold uppercase tracking-widest text-roseBright">${item.date}</span>
+          </div>
+        `;
+
+        // Open Lightbox on card click (unless Edit button clicked)
+        card.addEventListener('click', (e) => {
+          if (e.target.closest('.edit-polaroid-btn')) return;
+          openLightbox(index);
+        });
+
+        // Subtle 3D tilt on mouse move
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+          card.style.transform = `perspective(800px) rotateX(${(-y * 8).toFixed(1)}deg) rotateY(${(x * 8).toFixed(1)}deg) scale(1.03)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = `rotate(${item.tilt})`;
+        });
+
+        polaroidGrid.appendChild(card);
+      });
+
+      // Bind Edit Polaroid buttons
+      document.querySelectorAll('.edit-polaroid-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const idx = parseInt(btn.getAttribute('data-edit-idx'), 10);
+          openEditCardModal(idx);
+        });
+      });
+    }
+
+    renderPolaroids();
+
+    // 2. Photo Upload Handler (Keeps gallery strictly at 6 cards)
+    function handlePhotoFiles(fileList) {
+      if (!fileList || fileList.length === 0) return;
+      const sampleCaptions = [
+        'My favorite smile in the whole world ❤️',
+        'A moment I want to relive forever ✨',
+        'Pure magic with you 🌹',
+        'Best day ever with my favorite person 💕',
+        'Every glance makes my heart skip a beat 💖',
+        'Forever my happiest memory ❤️'
+      ];
+      const tilts = ['-2deg', '1.8deg', '-1.4deg', '1.6deg', '-1.8deg', '1.4deg'];
+
+      Array.from(fileList).slice(0, MAX_MEMORIES).forEach((file, i) => {
+        const objectUrl = URL.createObjectURL(file);
+        memories.unshift({
+          src: objectUrl,
+          caption: sampleCaptions[i % sampleCaptions.length],
+          date: `Memory 0${i + 1}`,
+          tilt: tilts[i % tilts.length]
+        });
+      });
+
+      // Strictly cap at 6 memories
+      if (memories.length > MAX_MEMORIES) {
+        memories.length = MAX_MEMORIES;
+      }
+
+      renderPolaroids();
+      document.getElementById('memories').scrollIntoView({ behavior: 'smooth' });
+      spawnHeartBurst(window.innerWidth / 2, window.innerHeight / 3, 14);
+    }
+
+    // 3. Lightbox Viewer Logic
+    const lightboxModal = document.getElementById('lightbox-modal');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const lightboxDate = document.getElementById('lightbox-date');
+
+    function openLightbox(idx) {
+      activePhotoIndex = idx;
+      const item = memories[activePhotoIndex];
+      lightboxImg.src = item.src;
+      lightboxCaption.textContent = item.caption;
+      lightboxDate.textContent = item.date;
+      lightboxModal.classList.remove('hidden');
+    }
+
+    document.getElementById('close-lightbox').addEventListener('click', () => lightboxModal.classList.add('hidden'));
+    lightboxModal.addEventListener('click', (e) => {
+      if (e.target === lightboxModal) lightboxModal.classList.add('hidden');
+    });
+
+    document.getElementById('prev-photo-btn').addEventListener('click', () => {
+      activePhotoIndex = (activePhotoIndex - 1 + memories.length) % memories.length;
+      openLightbox(activePhotoIndex);
+    });
+
+    document.getElementById('next-photo-btn').addEventListener('click', () => {
+      activePhotoIndex = (activePhotoIndex + 1) % memories.length;
+      openLightbox(activePhotoIndex);
+    });
+
+    // 4. Edit Single Memory Card Modal
+    const editCardModal = document.getElementById('edit-card-modal');
+    function openEditCardModal(idx) {
+      document.getElementById('edit-card-index').value = idx;
+      document.getElementById('edit-card-caption').value = memories[idx].caption;
+      document.getElementById('edit-card-date').value = memories[idx].date;
+      document.getElementById('edit-card-file').value = '';
+      editCardModal.classList.remove('hidden');
+    }
+
+    document.getElementById('close-edit-card-modal').addEventListener('click', () => editCardModal.classList.add('hidden'));
+    editCardModal.addEventListener('click', (e) => {
+      if (e.target === editCardModal) editCardModal.classList.add('hidden');
+    });
+
+    document.getElementById('edit-card-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const idx = parseInt(document.getElementById('edit-card-index').value, 10);
+      const fileInput = document.getElementById('edit-card-file');
+      if (fileInput.files && fileInput.files[0]) {
+        memories[idx].src = URL.createObjectURL(fileInput.files[0]);
+      }
+      memories[idx].caption = document.getElementById('edit-card-caption').value.trim();
+      memories[idx].date = document.getElementById('edit-card-date').value.trim();
+      renderPolaroids();
+      editCardModal.classList.add('hidden');
+    });
+
+    // 5. Personalize Hero & Name Customizer Modal
+    const customizerModal = document.getElementById('customizer-modal');
+    document.getElementById('open-customizer-btn').addEventListener('click', () => {
+      document.getElementById('input-her-name').value = document.getElementById('hero-her-name').textContent.trim();
+      document.getElementById('input-hero-subtitle').value = document.getElementById('hero-subtitle').textContent.trim();
+      document.getElementById('input-your-name').value = document.getElementById('letter-signature').textContent.trim();
+      customizerModal.classList.remove('hidden');
+    });
+
+    document.getElementById('close-customizer-btn').addEventListener('click', () => customizerModal.classList.add('hidden'));
+    customizerModal.addEventListener('click', (e) => {
+      if (e.target === customizerModal) customizerModal.classList.add('hidden');
+    });
+
+    document.getElementById('customizer-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const herName = document.getElementById('input-her-name').value.trim();
+      const sub = document.getElementById('input-hero-subtitle').value.trim();
+      const yourName = document.getElementById('input-your-name').value.trim();
+      const modalPhotos = document.getElementById('modal-photo-upload').files;
+
+      if (herName) {
+        document.getElementById('hero-her-name').textContent = herName;
+        document.getElementById('nav-brand-name').textContent = `For ${herName.replace('❤️', '').trim()}`;
+      }
+      if (sub) document.getElementById('hero-subtitle').textContent = sub;
+      if (yourName) document.getElementById('letter-signature').textContent = yourName;
+      if (modalPhotos && modalPhotos.length > 0) {
+        handlePhotoFiles(modalPhotos);
+        document.getElementById('modal-photo-upload').value = '';
+      }
+
+      customizerModal.classList.add('hidden');
+      spawnHeartBurst(window.innerWidth / 2, window.innerHeight / 2, 12);
+    });
+
+    // 6. Wax-Sealed Love Letter Unfold & Inline Edit
+    const envelopeCover = document.getElementById('envelope-cover');
+    const unfoldedLetter = document.getElementById('unfolded-letter');
+    const letterDisplayBody = document.getElementById('letter-display-body');
+    const letterEditorBox = document.getElementById('letter-editor-box');
+    const letterTextarea = document.getElementById('letter-textarea');
+
+    envelopeCover.addEventListener('click', (e) => {
+      envelopeCover.classList.add('hidden');
+      unfoldedLetter.classList.remove('hidden');
+      spawnHeartBurst(e.clientX || window.innerWidth / 2, e.clientY || 300, 14);
+    });
+
+    document.getElementById('close-letter-btn').addEventListener('click', () => {
+      unfoldedLetter.classList.add('hidden');
+      envelopeCover.classList.remove('hidden');
+    });
+
+    document.getElementById('toggle-edit-letter-btn').addEventListener('click', () => {
+      letterTextarea.value = letterDisplayBody.textContent.trim();
+      letterDisplayBody.classList.add('hidden');
+      letterEditorBox.classList.remove('hidden');
+    });
+
+    document.getElementById('save-letter-btn').addEventListener('click', () => {
+      const updated = letterTextarea.value.trim();
+      if (updated) letterDisplayBody.textContent = updated;
+      letterEditorBox.classList.add('hidden');
+      letterDisplayBody.classList.remove('hidden');
+    });
+
+    // 7. Interactive "Reasons Why You Make Me Smile" Cards
+    document.querySelectorAll('.reason-card').forEach(card => {
+      card.addEventListener('click', (e) => {
+        const hiddenText = card.querySelector('.reason-hidden-text');
+        const promptText = card.querySelector('.reason-prompt');
+        hiddenText.classList.remove('hidden');
+        promptText.classList.add('hidden');
+        card.classList.add('bg-rose-950/75', 'border-roseBright');
+        spawnHeartBurst(e.clientX, e.clientY, 7);
+      });
+    });
+
+    // 8. Playful "Do You Love Me?" Growing YES & Dodging NO Game
+    const loveYesBtn = document.getElementById('love-yes-btn');
+    const loveNoBtn = document.getElementById('love-no-btn');
+    const loveQuestionStage = document.getElementById('love-question-stage');
+    const loveYesCelebration = document.getElementById('love-yes-celebration');
+    const loveQuestionSubtext = document.getElementById('love-question-subtext');
+    const noClickCounterHint = document.getElementById('no-click-counter-hint');
+
+    let noClickCount = 0;
+    const pleadingNoTexts = [
+      'Are you sure? 🥺',
+      'Soch lo ek baar aur! 🙈',
+      'Dil toot jayega mera 💔',
+      'Itna bhaav mat khao 😂',
+      'Galti se dab gaya na? 😢',
+      'Ek chance toh do yaar 🥰',
+      'Ab toh Yes dabana hi padega! ❤️'
+    ];
+
+    loveNoBtn.addEventListener('click', (e) => {
+      noClickCount++;
+      const msg = pleadingNoTexts[(noClickCount - 1) % pleadingNoTexts.length];
+      loveNoBtn.textContent = msg;
+
+      // Grow the YES button dramatically with each NO tap
+      const newFontSize = Math.min(1.125 + noClickCount * 0.35, 3.2);
+      const newPadY = Math.min(0.95 + noClickCount * 0.25, 2.4);
+      const newPadX = Math.min(2.25 + noClickCount * 0.55, 5.2);
+      loveYesBtn.style.fontSize = `${newFontSize}rem`;
+      loveYesBtn.style.padding = `${newPadY}rem ${newPadX}rem`;
+
+      // Slightly shrink & playfully nudge the NO button
+      const noScale = Math.max(1 - noClickCount * 0.08, 0.58);
+      const nudgeX = (Math.random() - 0.5) * 40;
+      const nudgeY = (Math.random() - 0.5) * 20;
+      loveNoBtn.style.transform = `translate(${nudgeX}px, ${nudgeY}px) scale(${noScale})`;
+
+      loveQuestionSubtext.textContent = 'Dekho "Yes" kitna bada ho raha hai... ab maan bhi jao! 🥺❤️';
+      noClickCounterHint.textContent = `"No" attempts: ${noClickCount} (Dil abhi bhi "Yes" ka intezar kar raha hai 💕)`;
+      noClickCounterHint.classList.remove('hidden');
+
+      spawnHeartBurst(e.clientX || window.innerWidth / 2, e.clientY || 300, 5);
+    });
+
+    function triggerYesCelebration() {
+      loveQuestionStage.classList.add('hidden');
+      loveYesCelebration.classList.remove('hidden');
+      for (let wave = 0; wave < 4; wave++) {
+        setTimeout(() => {
+          spawnHeartBurst(
+            window.innerWidth * (0.2 + Math.random() * 0.6),
+            window.innerHeight * (0.25 + Math.random() * 0.45),
+            14
+          );
+        }, wave * 200);
+      }
+    }
+
+    loveYesBtn.addEventListener('click', triggerYesCelebration);
+
+    document.getElementById('more-love-confetti-btn').addEventListener('click', () => {
+      for (let wave = 0; wave < 3; wave++) {
+        setTimeout(() => {
+          spawnHeartBurst(
+            window.innerWidth * (0.25 + Math.random() * 0.5),
+            window.innerHeight * (0.3 + Math.random() * 0.4),
+            12
+          );
+        }, wave * 180);
+      }
+    });
+
+    document.getElementById('replay-love-question-btn').addEventListener('click', () => {
+      noClickCount = 0;
+      loveYesBtn.style.fontSize = '1.125rem';
+      loveYesBtn.style.padding = '0.95rem 2.25rem';
+      loveNoBtn.textContent = 'No 🙈';
+      loveNoBtn.style.transform = 'translate(0px, 0px) scale(1)';
+      loveQuestionSubtext.textContent = 'Soch samajh ke button dabana... dil ka mamla hai! 🙈✨';
+      noClickCounterHint.classList.add('hidden');
+      loveYesCelebration.classList.add('hidden');
+      loveQuestionStage.classList.remove('hidden');
+    });
+
+    // 9. Interactive Sunday Date Menu & Live Cart ("Paid With Kisses 💋")
+    const sundayMenuItems = [
+      {
+        id: 'tikki',
+        name: 'Crispy Aloo Tikki',
+        emoji: '🥔',
+        badge: 'Chatpata Classic',
+        desc: 'Extra crispy golden aloo tikki topped with sweet dahi, imli & green mint chutney.',
+        kissesCost: 2,
+        priceTag: '2 Sweet Kisses 💋'
+      },
+      {
+        id: 'pizza',
+        name: 'Margherita Pizza',
+        emoji: '🍕',
+        badge: 'Cheesy Favorite',
+        desc: 'Oven-baked thin crust loaded with molten mozzarella cheese, fresh basil & oregano.',
+        kissesCost: 5,
+        priceTag: '5 Sweet Kisses 💋'
+      },
+      {
+        id: 'waffle',
+        name: 'Belgian Chocolate Waffle',
+        emoji: '🧇',
+        badge: 'Sweet Treat',
+        desc: 'Warm, crispy waffle drizzled with rich melted dark & milk chocolate + vanilla scoop.',
+        kissesCost: 3,
+        priceTag: '3 Sweet Kisses 💋'
+      },
+      {
+        id: 'dimag',
+        name: 'Mera Dimag 🧠😂',
+        emoji: '🧠',
+        badge: 'Bestseller • Unlimited',
+        desc: '24/7 available, jitna marzi kha lo — sirf 1 flying kiss mein poora dimag tumhara!',
+        kissesCost: 1,
+        priceTag: '1 Flying Kiss 😘'
+      }
+    ];
+
+    const sundayCart = {};
+    const sundayMenuGrid = document.getElementById('sunday-menu-grid');
+    const sundayCartItemsEl = document.getElementById('sunday-cart-items');
+    const cartBadgeCount = document.getElementById('cart-badge-count');
+    const kissesBillTotalEl = document.getElementById('kisses-bill-total');
+    const confirmSundayOrderBtn = document.getElementById('confirm-sunday-order-btn');
+    const sundayOrderConfirmedBox = document.getElementById('sunday-order-confirmed-box');
+    const confirmedOrderSummary = document.getElementById('confirmed-order-summary');
+    const confirmedKissesNote = document.getElementById('confirmed-kisses-note');
+
+    function renderSundayMenu() {
+      sundayMenuGrid.innerHTML = '';
+      sundayMenuItems.forEach(item => {
+        const qty = sundayCart[item.id] || 0;
+        const isDimag = item.id === 'dimag';
+        const card = document.createElement('div');
+        card.className = `polaroid-card rounded-3xl bg-velvetCard/95 backdrop-blur-md border ${
+          qty > 0 ? 'border-roseBright ring-2 ring-rose-500/40' : 'border-rose-500/30'
+        } p-6 shadow-xl shadow-black/60 transition flex flex-col justify-between relative`;
+
+        const actionHtml = qty === 0
+          ? `<button type="button" data-add-id="${item.id}"
+               class="add-menu-btn btn-rose-shimmer w-full py-3 px-4 rounded-full bg-gradient-to-r from-roseBright to-roseDeep text-white font-bold text-xs sm:text-sm shadow-md shadow-rose-600/30 hover:brightness-110 active:scale-95 transition">
+               Add to Cart 🛒
+             </button>`
+          : `<div class="flex items-center justify-between bg-obsidian border border-rose-500/40 rounded-full p-1">
+               <button type="button" data-dec-id="${item.id}"
+                 class="dec-menu-btn w-9 h-9 rounded-full bg-rose-950 text-roseBright font-extrabold shadow-sm hover:bg-rose-900 transition">−</button>
+               <span class="font-bold text-sm text-creamRose">${qty} in Cart ❤️</span>
+               <button type="button" data-inc-id="${item.id}"
+                 class="inc-menu-btn w-9 h-9 rounded-full bg-roseBright text-white font-extrabold shadow-sm hover:bg-roseDeep transition">+</button>
+             </div>`;
+
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="w-12 h-12 rounded-2xl bg-rose-950 border border-rose-500/30 flex items-center justify-center text-2xl shadow-inner">
+                ${item.emoji}
+              </span>
+              <span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider ${
+                isDimag ? 'bg-rose-950 text-goldChampagne border border-goldChampagne/30' : 'bg-rose-950/80 text-softBlush border border-rose-500/25'
+              }">
+                ${item.badge}
+              </span>
+            </div>
+            <h3 class="font-serif text-2xl font-bold text-creamRose">${item.name}</h3>
+            <p class="text-xs sm:text-sm text-softBlush/75 mt-2 leading-relaxed">${item.desc}</p>
+          </div>
+
+          <div class="mt-5 pt-4 border-t border-rose-500/20 space-y-3">
+            <div class="flex items-center justify-between text-xs">
+              <span class="text-softBlush/55 font-semibold">Price:</span>
+              <span class="font-bold text-roseBright bg-rose-950/90 border border-rose-500/25 px-2.5 py-0.5 rounded-full">${item.priceTag}</span>
+            </div>
+            ${actionHtml}
+          </div>
+        `;
+
+        sundayMenuGrid.appendChild(card);
+      });
+
+      // Bind Cart Buttons
+      document.querySelectorAll('.add-menu-btn, .inc-menu-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const id = btn.getAttribute('data-add-id') || btn.getAttribute('data-inc-id');
+          sundayCart[id] = (sundayCart[id] || 0) + 1;
+          sundayOrderConfirmedBox.classList.add('hidden');
+          renderSundayMenu();
+          renderSundayCart();
+          spawnHeartBurst(e.clientX || window.innerWidth / 2, e.clientY || 300, 7, ['💋', '❤️', '😘', '✨']);
+        });
+      });
+
+      document.querySelectorAll('.dec-menu-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-dec-id');
+          if (sundayCart[id] > 1) {
+            sundayCart[id]--;
+          } else {
+            delete sundayCart[id];
+          }
+          sundayOrderConfirmedBox.classList.add('hidden');
+          renderSundayMenu();
+          renderSundayCart();
+        });
+      });
+    }
+
+    function renderSundayCart() {
+      const entries = Object.entries(sundayCart);
+      const totalQty = entries.reduce((sum, [, q]) => sum + q, 0);
+      const totalKisses = entries.reduce((sum, [id, q]) => {
+        const found = sundayMenuItems.find(m => m.id === id);
+        return sum + (found ? found.kissesCost * q : 0);
+      }, 0);
+
+      cartBadgeCount.textContent = `${totalQty} ${totalQty === 1 ? 'Item' : 'Items'} Selected`;
+
+      if (entries.length === 0) {
+        confirmSundayOrderBtn.disabled = true;
+        kissesBillTotalEl.textContent = '0 Kisses 💋 (Add treats first!)';
+        sundayCartItemsEl.innerHTML = `
+          <p class="text-center text-sm text-softBlush/60 py-4 italic">
+            Abhi cart khali hai... upar se apni pasand ki cheezein add karo! 😋💋
+          </p>
+        `;
+        return;
+      }
+
+      confirmSundayOrderBtn.disabled = false;
+      kissesBillTotalEl.textContent = `${totalKisses} Sweet ${totalKisses === 1 ? 'Kiss' : 'Kisses'} 💋 (100% Love Discount!)`;
+      sundayCartItemsEl.innerHTML = '';
+
+      entries.forEach(([id, qty]) => {
+        const item = sundayMenuItems.find(m => m.id === id);
+        if (!item) return;
+        const row = document.createElement('div');
+        row.className = 'flex items-center justify-between gap-3 px-4 py-2.5 rounded-2xl bg-obsidian border border-rose-500/25';
+        row.innerHTML = `
+          <div class="flex items-center gap-2.5">
+            <span class="text-xl">${item.emoji}</span>
+            <div>
+              <p class="font-bold text-sm text-creamRose">${item.name}</p>
+              <span class="text-[11px] text-roseBright font-semibold">${item.kissesCost * qty} Kisses 💋</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="px-2.5 py-1 rounded-full bg-rose-950 text-roseBright border border-rose-500/30 text-xs font-extrabold">× ${qty}</span>
+          </div>
+        `;
+        sundayCartItemsEl.appendChild(row);
+      });
+    }
+
+    confirmSundayOrderBtn.addEventListener('click', () => {
+      const entries = Object.entries(sundayCart);
+      const totalKisses = entries.reduce((sum, [id, q]) => {
+        const found = sundayMenuItems.find(m => m.id === id);
+        return sum + (found ? found.kissesCost * q : 0);
+      }, 0);
+
+      const summaryParts = entries.map(([id, qty]) => {
+        const item = sundayMenuItems.find(m => m.id === id);
+        return item ? `${item.emoji} ${item.name} (×${qty})` : '';
+      }).filter(Boolean);
+
+      confirmedOrderSummary.textContent = summaryParts.join('  •  ');
+      confirmedKissesNote.textContent = `Bill Settled: ${totalKisses} Sweet Kisses 💋 (Due on Sunday Date!)`;
+      sundayOrderConfirmedBox.classList.remove('hidden');
+
+      for (let wave = 0; wave < 3; wave++) {
+        setTimeout(() => {
+          spawnHeartBurst(
+            window.innerWidth * (0.25 + Math.random() * 0.5),
+            window.innerHeight * (0.35 + Math.random() * 0.35),
+            12,
+            ['💋', '😘', '❤️', '💖', '✨']
+          );
+        }, wave * 220);
+      }
+    });
+
+    // Copy Order to Clipboard (Using document.execCommand('copy') for universal iframe compatibility)
+    document.getElementById('copy-order-btn').addEventListener('click', () => {
+      const orderText = `Hey! Mera Sunday Date Menu Order ready hai 💋❤️:\n${confirmedOrderSummary.textContent}\n${confirmedKissesNote.textContent} 😘`;
+      const tempArea = document.createElement('textarea');
+      tempArea.value = orderText;
+      tempArea.style.position = 'fixed';
+      tempArea.style.opacity = '0';
+      document.body.appendChild(tempArea);
+      tempArea.select();
+      try {
+        document.execCommand('copy');
+        const toast = document.getElementById('copy-order-toast');
+        toast.classList.remove('hidden');
+        setTimeout(() => toast.classList.add('hidden'), 3500);
+      } catch (err) {
+        // Fallback silently ignored
+      }
+      document.body.removeChild(tempArea);
+    });
+
+    renderSundayMenu();
+    renderSundayCart();
+
+    // 10. Grand Finale Surprise & Virtual Hug Counter
+    let hugCount = 1;
+    const hugCountEl = document.getElementById('hug-count');
+    const finaleWishBox = document.getElementById('finale-wish-box');
+    const hugResponseText = document.getElementById('hug-response-text');
+
+    document.getElementById('grand-surprise-btn').addEventListener('click', () => {
+      finaleWishBox.classList.remove('hidden');
+      for (let i = 0; i < 4; i++) {
+        setTimeout(() => {
+          spawnHeartBurst(
+            window.innerWidth * (0.25 + Math.random() * 0.5),
+            window.innerHeight * (0.3 + Math.random() * 0.4),
+            12
+          );
+        }, i * 220);
+      }
+    });
+
+    document.getElementById('virtual-hug-btn').addEventListener('click', (e) => {
+      hugCount++;
+      hugCountEl.textContent = hugCount;
+      finaleWishBox.classList.remove('hidden');
+      hugResponseText.textContent = `You’ve unlocked ${hugCount} warm hugs! Redeemable anytime we meet 🤗❤️`;
+      spawnHeartBurst(e.clientX || window.innerWidth / 2, e.clientY || 400, 10);
+    });
+
+    // 11. Scroll Progress Bar & Scroll Reveal Observer
+    const scrollProgressEl = document.getElementById('scroll-progress');
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      scrollProgressEl.style.width = `${docHeight > 0 ? (scrollTop / docHeight) * 100 : 0}%`;
+    }, { passive: true });
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal-up').forEach(el => revealObserver.observe(el));
+
+    // 12. Cursor Glow Trail, Sparkle Ribbon & Parallax Orbs
+    const cursorGlow = document.getElementById('cursor-glow');
+    const orb1 = document.getElementById('parallax-orb-1');
+    const orb2 = document.getElementById('parallax-orb-2');
+    const orb3 = document.getElementById('parallax-orb-3');
+    let lastTrailTime = 0;
+
+    function spawnCursorSparkle(x, y) {
+      const now = Date.now();
+      if (now - lastTrailTime < 55) return;
+      lastTrailTime = now;
+      const trailIcons = ['♥', '✨', '❤'];
+      const p = document.createElement('span');
+      p.className = 'cursor-trail-particle select-none text-xs text-roseBright';
+      p.textContent = trailIcons[Math.floor(Math.random() * trailIcons.length)];
+      p.style.left = `${x}px`;
+      p.style.top = `${y}px`;
+      document.body.appendChild(p);
+      setTimeout(() => p.remove(), 850);
+    }
+
+    window.addEventListener('mousemove', (e) => {
+      cursorGlow.style.opacity = '1';
+      cursorGlow.style.left = `${e.clientX}px`;
+      cursorGlow.style.top = `${e.clientY}px`;
+      spawnCursorSparkle(e.clientX, e.clientY);
+
+      const normX = (e.clientX / window.innerWidth - 0.5) * 30;
+      const normY = (e.clientY / window.innerHeight - 0.5) * 30;
+      if (orb1) orb1.style.transform = `translate(${normX}px, ${normY}px)`;
+      if (orb2) orb2.style.transform = `translate(${-normX}px, ${-normY}px)`;
+      if (orb3) orb3.style.transform = `translate(calc(-50% + ${normX * 0.6}px), calc(-50% + ${normY * 0.6}px))`;
+    }, { passive: true });
+
+    // Magnetic Button Pull Effect
+    document.querySelectorAll('.magnetic-btn').forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const pullX = (e.clientX - rect.left - rect.width / 2) * 0.18;
+        const pullY = (e.clientY - rect.top - rect.height / 2) * 0.18;
+        btn.style.transform = `translate(${pullX.toFixed(1)}px, ${pullY.toFixed(1)}px)`;
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = 'translate(0px, 0px)';
+      });
+    });
+
+    // 13. Ambient Floating Crimson Rose Petals & Ruby Sparkles Canvas
+    const canvas = document.getElementById('petals-canvas');
+    const ctx = canvas.getContext('2d');
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    const particles = Array.from({ length: 34 }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      size: 4 + Math.random() * 6,
+      speedY: 0.4 + Math.random() * 0.85,
+      speedX: (Math.random() - 0.5) * 0.6,
+      rotation: Math.random() * Math.PI * 2,
+      rotSpeed: (Math.random() - 0.5) * 0.025,
+      opacity: 0.25 + Math.random() * 0.45,
+      type: Math.random() > 0.35 ? 'petal' : 'sparkle'
+    }));
+
+    function animatePetals() {
+      ctx.clearRect(0, 0, width, height);
+
+      particles.forEach(p => {
+        p.y += p.speedY;
+        p.x += p.speedX + Math.sin(p.y * 0.012) * 0.35;
+        p.rotation += p.rotSpeed;
+
+        if (p.y > height + 16) {
+          p.y = -16;
+          p.x = Math.random() * width;
+        }
+        if (p.x > width + 16) p.x = -16;
+        if (p.x < -16) p.x = width + 16;
+
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rotation);
+        ctx.globalAlpha = p.opacity;
+
+        if (p.type === 'petal') {
+          // Deep Crimson Rose Petal Shape
+          ctx.fillStyle = '#E11D48';
+          ctx.beginPath();
+          ctx.moveTo(0, -p.size);
+          ctx.bezierCurveTo(p.size, -p.size, p.size, p.size, 0, p.size * 1.2);
+          ctx.bezierCurveTo(-p.size, p.size, -p.size, -p.size, 0, -p.size);
+          ctx.fill();
+        } else {
+          // Ruby & Warm Gold Sparkle
+          ctx.fillStyle = '#FB7185';
+          ctx.beginPath();
+          ctx.arc(0, 0, p.size * 0.34, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.restore();
+      });
+
+      requestAnimationFrame(animatePetals);
+    }
+
+    animatePetals();
+  </script>
+</body>
+</html>
